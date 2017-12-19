@@ -13,35 +13,35 @@
                 <tbody>
                     <tr>
                         <th>Id</th>
-                            <td>{{ ventum.id }}</td>
+                            <td>{{ venta.id }}</td>
                     </tr>
                     <tr>
                         <th>Nofactura</th>
-                            <td>{{ ventum.noFactura }}</td>
+                            <td>{{ venta.noFactura }}</td>
                     </tr>
                     <tr>
                         <th>Importecuc</th>
-                            <td>{{ ventum.importeCUC }}</td>
+                            <td>{{ venta.importeCUC }}</td>
                     </tr>
                     <tr>
                         <th>Importemn</th>
-                            <td>{{ ventum.importeMN }}</td>
+                            <td>{{ venta.importeMN }}</td>
                     </tr>
                     <tr>
                         <th>Ventatotal</th>
-                            <td>{{ ventum.ventaTotal }}</td>
+                            <td>{{ venta.ventaTotal }}</td>
                     </tr>
                     <tr>
                         <th>Costocuc</th>
-                            <td>{{ ventum.costoCUC }}</td>
+                            <td>{{ venta.costoCUC }}</td>
                     </tr>
                     <tr>
                         <th>Costomn</th>
-                            <td>{{ ventum.costoMN }}</td>
+                            <td>{{ venta.costoMN }}</td>
                     </tr>
                     <tr>
                         <th>Costototal</th>
-                            <td>{{ ventum.costoTotal }}</td>
+                            <td>{{ venta.costoTotal }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -50,7 +50,7 @@
                 {{ form_start(delete_form) }}
                 <a class="btn btn-default" href="{{ path('venta_index') }}">Volver</a>
                 <a class="btn btn-default"
-                   href="{{ path('venta_edit', { 'id': ventum.id }) }}">Editar</a>
+                   href="{{ path('venta_edit', { 'id': venta.id }) }}">Editar</a>
                 <input class="btn btn-danger" type="submit" value="Delete">
             </div>
         </div>

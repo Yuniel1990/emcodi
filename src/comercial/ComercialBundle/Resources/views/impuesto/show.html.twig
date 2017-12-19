@@ -1,0 +1,45 @@
+    {% extends 'base.html.twig' %}
+    {% block title %}Impuesto{% endblock %}
+    {% block breadcrumb %}
+    {{ breadcrumb.breadcrumb(['Inicio','NIVEL_2','NIVEL_3']) }}
+    {% endblock %}
+    {% block title_portlet %}Mostrando Impuesto{% endblock %}
+
+    {% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped table-bordered table-hover col-md-offset-4">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                            <td>{{ impuesto.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Osde</th>
+                            <td>{{ impuesto.osde }}</td>
+                    </tr>
+                    <tr>
+                        <th>Otrosgastos</th>
+                            <td>{{ impuesto.otrosGastos }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ingresos</th>
+                            <td>{{ impuesto.ingresos }}</td>
+                    </tr>
+                    <tr>
+                        <th>Impuestototal</th>
+                            <td>{{ impuesto.impuestoTotal }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="col-md-6 margin-top-20">
+                {{ form_start(delete_form) }}
+                <a class="btn btn-default" href="{{ path('impuesto_index') }}">Volver</a>
+                <a class="btn btn-default"
+                   href="{{ path('impuesto_edit', { 'id': impuesto.id }) }}">Editar</a>
+                <input class="btn btn-danger" type="submit" value="Delete">
+            </div>
+        </div>
+    </div>
+    {% endblock %}

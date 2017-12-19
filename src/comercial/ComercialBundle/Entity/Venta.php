@@ -24,7 +24,7 @@ class Venta
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="datetime")
+     * @ORM\Column(name="fecha", type="date")
      */
     private $fecha;
 
@@ -52,7 +52,7 @@ class Venta
     /**
      * @var string
      *
-     * @ORM\Column(name="ventaTotal", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="ventaTotal", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $ventaTotal;
 
@@ -73,9 +73,16 @@ class Venta
     /**
      * @var string
      *
-     * @ORM\Column(name="costoTotal", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="costoTotal", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $costoTotal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilBrutaVenta", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $utilBrutaVenta;
 
 
     /**
@@ -270,5 +277,47 @@ class Venta
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+    /**
+     * Set utilBrutaVenta
+     *
+     * @param string $utilBrutaVenta
+     * @return Venta
+     */
+    public function setUtilBrutaVenta($utilBrutaVenta)
+    {
+        $this->utilBrutaVenta = $utilBrutaVenta;
+
+        return $this;
+    }
+
+    /**
+     * Get utilBrutaVenta
+     *
+     * @return string 
+     */
+    public function getUtilBrutaVenta()
+    {
+        return $this->utilBrutaVenta;
+    }
+
+    public function __toString()
+    {
+        return $this->noFactura;
+    }
+
+    public function SacarVentaNeta()
+    {
+        $flag = $this->importeCUC + $this->importeMN;
+        if ($flag!=0){
+            $porciento = ($flag*3)/100;
+            return $this->ventaTotal = $flag - $porciento;
+        }
+    }
+
+    public function SacarCostoVenta()
+    {
+        return $this->costoTotal = $this->costoCUC+$this->costoMN;
     }
 }

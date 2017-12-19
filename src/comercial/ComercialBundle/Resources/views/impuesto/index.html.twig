@@ -1,0 +1,63 @@
+    {% extends 'base.html.twig' %}
+    {% block title %}Impuesto{% endblock %}
+    {% block breadcrumb %}
+    {{ breadcrumb.breadcrumb(['Inicio','NIVEL_2','NIVEL_3']) }}
+    {% endblock %}
+    {% block title_portlet %}Listado de Impuesto{% endblock %}
+    {% block stylesheetsTables %}{{ parent() }}{% endblock %}
+
+            {% block body %}
+        <div class="row margin-bottom-20">
+                <div class="col-md-3">
+                    <a href="{{ path('impuesto_new') }}"
+                       class="btn btn-default green-stripe fa fa-plus">Nuevo</a>
+                </div>
+            </div>
+                <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered table-hover" id="TablaImpuesto">
+                    <thead>
+                    <tr>
+                            <th>Id</th>
+                            <th>Osde</th>
+                            <th>Otrosgastos</th>
+                            <th>Ingresos</th>
+                            <th>Impuestototal</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for impuesto in impuestos %}
+                    <tr>
+                                <td>
+                                    <a href="{{ path('impuesto_show', { 'id': impuesto.id }) }}">{{ impuesto.id }}</a>
+                                </td>
+                                <td>{{ impuesto.osde }}</td>
+                                <td>{{ impuesto.otrosGastos }}</td>
+                                <td>{{ impuesto.ingresos }}</td>
+                                <td>{{ impuesto.impuestoTotal }}</td>
+                                <td>
+                                    <ul>
+                                            <li>
+                                                <a href="{{ path('impuesto_show', { 'id': impuesto.id }) }}">show</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('impuesto_edit', { 'id': impuesto.id }) }}">edit</a>
+                                            </li>
+                                    </ul>
+                                </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endblock %}
+        {% block javascriptsTable %}
+    {{ parent() }}
+<script>
+    jQuery(document).ready(function () {
+        initTableImpuesto.init();
+    });
+</script>
+{% endblock %}

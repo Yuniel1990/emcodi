@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+    {% block title %}Venta{% endblock %}
+    {% block breadcrumb %}
+        {{ breadcrumb.breadcrumb(['Inicio','NIVEL_2','NIVEL_3']) }}
+    {% endblock %}
+    {% block title_portlet %}Listado de Venta{% endblock %}
+    {% block stylesheetsTables %}{{ parent() }}{% endblock %}
+
+            {% block body %}
+                <div class="row margin-bottom-20">
+                    <div class="col-md-3">
+                        <a href="{{ path('venta_new') }}"
+                           class="btn btn-default green-stripe fa fa-plus">Nuevo</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered table-hover" id="TablaVenta">
+                            <thead>
+                            <tr>
+                                <th>Id
+                                <th>fecha</th>
+                                <th>Nofactura</th>
+                                <th>Importecuc</th>
+                                <th>Importemn</th>
+                                <th>Ventatotal</th>
+                                <th>Costocuc</th>
+                                <th>Costomn</th>
+                                <th>Costototal</th>
+                                <th>Venta Bruta</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for venta in ventas %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('venta_show', { 'id': venta.id }) }}">{{ venta.id }}</a>
+                                    </td>
+                                    <td>{{ venta.fecha|date('d/M/y') }}</td>
+                                    <td>{{ venta.noFactura }}</td>
+                                    <td>{{ venta.importeCUC }}</td>
+                                    <td>{{ venta.importeMN }}</td>
+                                    <td>{{ venta.ventaTotal }}</td>
+                                    <td>{{ venta.costoCUC }}</td>
+                                    <td>{{ venta.costoMN }}</td>
+                                    <td>{{ venta.costoTotal }}</td>
+                                    <td>{{ venta.utilBrutaVenta }}</td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('venta_show', { 'id': venta.id }) }}">show</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('venta_edit', { 'id': venta.id }) }}">edit</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endblock %}
+        {% block javascriptsTable %}
+            {{ parent() }}
+            <script>
+                jQuery(document).ready(function () {
+                    initTableVenta.init();
+                });
+            </script>
+        {% endblock %}

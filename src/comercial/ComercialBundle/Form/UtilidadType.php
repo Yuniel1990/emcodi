@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class VentaType extends AbstractType
+class UtilidadType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,15 +15,11 @@ class VentaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fecha')
-            ->add('noFactura')
-            ->add('importeCUC')
-            ->add('importeMN')
-            //->add('ventaTotal')
-            ->add('costoCUC')
-            ->add('costoMN')
-           // ->add('utilBrutaVenta')
-           // ->add('costoTotal')
+            ->add('mes', 'datetime')
+            ->add('valor')
+            ->add('ventas')
+            ->add('gastos')
+            ->add('impuestos')
         ;
     }
     
@@ -33,7 +29,7 @@ class VentaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'comercial\ComercialBundle\Entity\Venta'
+            'data_class' => 'comercial\ComercialBundle\Entity\Utilidad'
         ));
     }
 }

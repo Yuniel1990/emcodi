@@ -4,7 +4,7 @@ namespace comercial\ComercialBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class VentaControllerTest extends WebTestCase
+class ImpuestoControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class VentaControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/venta/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /venta/");
+        $crawler = $client->request('GET', '/impuesto/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /impuesto/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'comercial_comercialbundle_venta[field_name]'  => 'Test',
+            'comercial_comercialbundle_impuesto[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class VentaControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'comercial_comercialbundle_venta[field_name]'  => 'Foo',
+            'comercial_comercialbundle_impuesto[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 
