@@ -1,0 +1,58 @@
+    {% extends 'base.html.twig' %}
+    {% block menu %}{{ parent() }}{% endblock %}
+    {% block title %}Venta{% endblock %}
+    {% block breadcrumb %}
+    {{ breadcrumb.breadcrumb(['Inicio','NIVEL_2','NIVEL_3']) }}
+    {% endblock %}
+    {% block title_portlet %}Mostrando Venta{% endblock %}
+
+    {% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped table-bordered table-hover col-md-offset-4">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                            <td>{{ ventum.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nofactura</th>
+                            <td>{{ ventum.noFactura }}</td>
+                    </tr>
+                    <tr>
+                        <th>Importecuc</th>
+                            <td>{{ ventum.importeCUC }}</td>
+                    </tr>
+                    <tr>
+                        <th>Importemn</th>
+                            <td>{{ ventum.importeMN }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ventatotal</th>
+                            <td>{{ ventum.ventaTotal }}</td>
+                    </tr>
+                    <tr>
+                        <th>Costocuc</th>
+                            <td>{{ ventum.costoCUC }}</td>
+                    </tr>
+                    <tr>
+                        <th>Costomn</th>
+                            <td>{{ ventum.costoMN }}</td>
+                    </tr>
+                    <tr>
+                        <th>Costototal</th>
+                            <td>{{ ventum.costoTotal }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="col-md-6 margin-top-20">
+                {{ form_start(delete_form) }}
+                <a class="btn btn-default" href="{{ path('venta_index') }}">Volver</a>
+                <a class="btn btn-default"
+                   href="{{ path('venta_edit', { 'id': ventum.id }) }}">Editar</a>
+                <input class="btn btn-danger" type="submit" value="Delete">
+            </div>
+        </div>
+    </div>
+    {% endblock %}

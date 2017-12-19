@@ -1,0 +1,4 @@
+services:
+#    comercial.example:
+#        class: comercial\ComercialBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
