@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UtilidadType extends AbstractType
+class CompradorType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,11 +15,8 @@ class UtilidadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('mes', 'datetime')
-            ->add('valor')
-            ->add('ventas')
-            ->add('gastos')
-            ->add('impuestos')
+            ->add('descripcion')
+            ->add('codigo')
         ;
     }
     
@@ -29,7 +26,7 @@ class UtilidadType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'comercial\ComercialBundle\Entity\Utilidad'
+            'data_class' => 'comercial\ComercialBundle\Entity\Comprador'
         ));
     }
 }

@@ -60,11 +60,6 @@ class VentaController extends Controller
             $venta->setVentaTotal($ventaT);
             $venta->setCostoTotal($costoT);
             $venta->setUtilBrutaVenta($ventaB);
-            $ventassumadas = $em->getRepository('ComercialBundle:Venta')->BuscarVentaDiarias();
-            //seteo una variable de session llamada utilidades con el valor $ventassumadas[0]['utilidad']
-            $session->set('utilidades',$ventassumadas[0]['utilidad']);
-
-
 
             $em->persist($venta);
             $em->flush();

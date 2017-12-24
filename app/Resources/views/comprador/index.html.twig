@@ -1,0 +1,59 @@
+    {% extends 'base.html.twig' %}
+    {% block title %}Comprador{% endblock %}
+    {% block breadcrumb %}
+    {{ breadcrumb.breadcrumb(['Inicio','NIVEL_2','NIVEL_3']) }}
+    {% endblock %}
+    {% block title_portlet %}Listado de Comprador{% endblock %}
+    {% block stylesheetsTables %}{{ parent() }}{% endblock %}
+
+            {% block body %}
+        <div class="row margin-bottom-20">
+                <div class="col-md-3">
+                    <a href="{{ path('comprador_new') }}"
+                       class="btn btn-default green-stripe fa fa-plus">Nuevo</a>
+                </div>
+            </div>
+                <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered table-hover" id="TablaComprador">
+                    <thead>
+                    <tr>
+                            <th>Id</th>
+                            <th>Descripcion</th>
+                            <th>Codigo</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for comprador in compradors %}
+                    <tr>
+                                <td>
+                                    <a href="{{ path('comprador_show', { 'id': comprador.id }) }}">{{ comprador.id }}</a>
+                                </td>
+                                <td>{{ comprador.descripcion }}</td>
+                                <td>{{ comprador.codigo }}</td>
+                                <td>
+                                    <ul>
+                                            <li>
+                                                <a href="{{ path('comprador_show', { 'id': comprador.id }) }}">show</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('comprador_edit', { 'id': comprador.id }) }}">edit</a>
+                                            </li>
+                                    </ul>
+                                </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endblock %}
+        {% block javascriptsTable %}
+    {{ parent() }}
+<script>
+    jQuery(document).ready(function () {
+        initTableComprador.init();
+    });
+</script>
+{% endblock %}

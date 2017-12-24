@@ -29,6 +29,28 @@ class Operacion
     private $fecha;
 
     /**
+     * @var \stdClass
+     *
+     * @ORM\ManyToOne(targetEntity="comercial\ComercialBundle\Entity\Comprador", inversedBy="operaciones")
+     * @ORM\JoinColumn(name="comprador_id", referencedColumnName="id")
+     */
+    private $comprador;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="noFactura", type="string", length=255)
+     */
+    private $noFactura;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ordenDespacho", type="string", length=255)
+     */
+    private $ordenDespacho;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="importeCUC", type="decimal", precision=10, scale=2)
@@ -45,17 +67,27 @@ class Operacion
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="string", length=255)
+     * @ORM\Column(name="total", type="decimal", precision=10, scale=2, nullable=true)
      */
-    private $descripcion;
+    private $total;
 
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="tipoOperacion", type="object")
+     * @ORM\ManyToOne(targetEntity="comercial\ComercialBundle\Entity\TipoOperacion", inversedBy="operaciones")
+     * @ORM\JoinColumn(name="tipoOperacion_id", referencedColumnName="id")
      */
     private $tipoOperacion;
 
+    public function SacarVentaNeta($descuento)
+    {
+        $flag = $this->importeCUC + $this->importeMN;
+        if ($flag!=0){
+            $porciento = ($flag*$descuento)/100;
+
+            return $this->total = $flag - $porciento;
+        }
+    }
 
     /**
      * Get id
@@ -88,6 +120,52 @@ class Operacion
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+    /**
+     * Set noFactura
+     *
+     * @param string $noFactura
+     * @return Operacion
+     */
+    public function setNoFactura($noFactura)
+    {
+        $this->noFactura = $noFactura;
+
+        return $this;
+    }
+
+    /**
+     * Get noFactura
+     *
+     * @return string 
+     */
+    public function getNoFactura()
+    {
+        return $this->noFactura;
+    }
+
+    /**
+     * Set ordenDespacho
+     *
+     * @param string $ordenDespacho
+     * @return Operacion
+     */
+    public function setOrdenDespacho($ordenDespacho)
+    {
+        $this->ordenDespacho = $ordenDespacho;
+
+        return $this;
+    }
+
+    /**
+     * Get ordenDespacho
+     *
+     * @return string 
+     */
+    public function getOrdenDespacho()
+    {
+        return $this->ordenDespacho;
     }
 
     /**
@@ -137,35 +215,58 @@ class Operacion
     }
 
     /**
-     * Set descripcion
+     * Set total
      *
-     * @param string $descripcion
+     * @param string $total
      * @return Operacion
      */
-    public function setDescripcion($descripcion)
+    public function setTotal($total)
     {
-        $this->descripcion = $descripcion;
+        $this->total = $total;
 
         return $this;
     }
 
     /**
-     * Get descripcion
+     * Get total
      *
      * @return string 
      */
-    public function getDescripcion()
+    public function getTotal()
     {
-        return $this->descripcion;
+        return $this->total;
+    }
+
+    /**
+     * Set comprador
+     *
+     * @param \comercial\ComercialBundle\Entity\Comprador $comprador
+     * @return Operacion
+     */
+    public function setComprador(\comercial\ComercialBundle\Entity\Comprador $comprador = null)
+    {
+        $this->comprador = $comprador;
+
+        return $this;
+    }
+
+    /**
+     * Get comprador
+     *
+     * @return \comercial\ComercialBundle\Entity\Comprador 
+     */
+    public function getComprador()
+    {
+        return $this->comprador;
     }
 
     /**
      * Set tipoOperacion
      *
-     * @param \stdClass $tipoOperacion
+     * @param \comercial\ComercialBundle\Entity\TipoOperacion $tipoOperacion
      * @return Operacion
      */
-    public function setTipoOperacion($tipoOperacion)
+    public function setTipoOperacion(\comercial\ComercialBundle\Entity\TipoOperacion $tipoOperacion = null)
     {
         $this->tipoOperacion = $tipoOperacion;
 
@@ -175,7 +276,7 @@ class Operacion
     /**
      * Get tipoOperacion
      *
-     * @return \stdClass 
+     * @return \comercial\ComercialBundle\Entity\TipoOperacion 
      */
     public function getTipoOperacion()
     {

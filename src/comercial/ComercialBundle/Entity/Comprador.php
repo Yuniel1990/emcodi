@@ -5,12 +5,12 @@ namespace comercial\ComercialBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TipoOperacion
+ * Comprador
  *
- * @ORM\Table(name="tipo_operacion")
- * @ORM\Entity(repositoryClass="comercial\ComercialBundle\Repository\TipoOperacionRepository")
+ * @ORM\Table(name="comprador")
+ * @ORM\Entity(repositoryClass="comercial\ComercialBundle\Repository\CompradorRepository")
  */
-class TipoOperacion
+class Comprador
 {
     /**
      * @var int
@@ -31,16 +31,17 @@ class TipoOperacion
     /**
      * @var string
      *
-     * @ORM\Column(name="descuento", type="decimal",precision=10, scale=2, nullable=true)
+     * @ORM\Column(name="codigo", type="string", length=20, unique=true)
      */
-    private $descuento;
+    private $codigo;
 
     /**
      * @var \stdClass
      *
-     * @ORM\OneToMany(targetEntity="comercial\ComercialBundle\Entity\Operacion", mappedBy="tipoOperacion")
+     * @ORM\OneToMany(targetEntity="comercial\ComercialBundle\Entity\Operacion", mappedBy="comprador")
      */
     private $operaciones;
+
 
     /**
      * Get id
@@ -56,7 +57,7 @@ class TipoOperacion
      * Set descripcion
      *
      * @param string $descripcion
-     * @return TipoOperacion
+     * @return Comprador
      */
     public function setDescripcion($descripcion)
     {
@@ -74,6 +75,52 @@ class TipoOperacion
     {
         return $this->descripcion;
     }
+
+    /**
+     * Set codigo
+     *
+     * @param string $codigo
+     * @return Comprador
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return string 
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * Set operaciones
+     *
+     * @param \stdClass $operaciones
+     * @return Comprador
+     */
+    public function setOperaciones($operaciones)
+    {
+        $this->operaciones = $operaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get operaciones
+     *
+     * @return \stdClass 
+     */
+    public function getOperaciones()
+    {
+        return $this->operaciones;
+    }
     /**
      * Constructor
      */
@@ -83,33 +130,10 @@ class TipoOperacion
     }
 
     /**
-     * Set descuento
-     *
-     * @param string $descuento
-     * @return TipoOperacion
-     */
-    public function setDescuento($descuento)
-    {
-        $this->descuento = $descuento;
-
-        return $this;
-    }
-
-    /**
-     * Get descuento
-     *
-     * @return string 
-     */
-    public function getDescuento()
-    {
-        return $this->descuento;
-    }
-
-    /**
      * Add operaciones
      *
      * @param \comercial\ComercialBundle\Entity\Operacion $operaciones
-     * @return TipoOperacion
+     * @return Comprador
      */
     public function addOperacione(\comercial\ComercialBundle\Entity\Operacion $operaciones)
     {
@@ -126,20 +150,5 @@ class TipoOperacion
     public function removeOperacione(\comercial\ComercialBundle\Entity\Operacion $operaciones)
     {
         $this->operaciones->removeElement($operaciones);
-    }
-
-    /**
-     * Get operaciones
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getOperaciones()
-    {
-        return $this->operaciones;
-    }
-
-    public function __toString()
-    {
-        return $this->descripcion;
     }
 }

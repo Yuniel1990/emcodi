@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+    {% block title %}Operacion{% endblock %}
+    {% block breadcrumb %}
+        {{ breadcrumb.breadcrumb(['Inicio','NIVEL_2','NIVEL_3']) }}
+    {% endblock %}
+    {% block title_portlet %}Vista de Informe{% endblock %}
+    {% block stylesheetsTables %}{{ parent() }}{% endblock %}
+
+            {% block body %}
+                <div class="row">
+                    <div class="col-md-12 border-blue">
+                        <div class="col-md-3">
+                            <label value="fecha">Seleccione la fecha</label>
+                            <input type="date" value="date" />
+
+                            <label value="fecha">Seleccione la operacion</label>
+
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+
+{% block javascriptsTable %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function () {
+            initTableOperacion.init();
+        });
+    </script>
+{% endblock %}
