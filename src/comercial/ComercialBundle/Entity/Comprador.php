@@ -151,4 +151,9 @@ class Comprador
     {
         $this->operaciones->removeElement($operaciones);
     }
+
+    public function __toString()
+    {
+        return $this->descripcion;
+    }
 }
