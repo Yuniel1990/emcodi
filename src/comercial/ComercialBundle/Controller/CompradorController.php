@@ -28,7 +28,7 @@ class CompradorController extends Controller
 
         $compradors = $em->getRepository('ComercialBundle:Comprador')->findAll();
 
-        return $this->render('comprador/index.html.twig', array(
+        return $this->render('ComercialBundle:comprador:index.html.twig', array(
             'compradors' => $compradors,
         ));
     }
@@ -58,7 +58,7 @@ class CompradorController extends Controller
 
         }
 
-        return $this->render('comprador/new.html.twig', array(
+        return $this->render('ComercialBundle:comprador:new.html.twig', array(
             'comprador' => $comprador,
             'form' => $form->createView(),
         ));
@@ -74,7 +74,7 @@ class CompradorController extends Controller
     {
         $deleteForm = $this->createDeleteForm($comprador);
 
-        return $this->render('comprador/show.html.twig', array(
+        return $this->render('ComercialBundle:comprador:show.html.twig', array(
             'comprador' => $comprador,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -100,7 +100,7 @@ class CompradorController extends Controller
             return $this->redirectToRoute('comprador_edit', array('id' => $comprador->getId()));
         }
 
-        return $this->render('comprador/edit.html.twig', array(
+        return $this->render('ComercialBundle:comprador:edit.html.twig', array(
             'comprador' => $comprador,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

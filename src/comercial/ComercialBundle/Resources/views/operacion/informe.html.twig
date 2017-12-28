@@ -9,13 +9,13 @@
             {% block body %}
                 <div class="row">
                     <div class="col-md-12 border-blue">
-                        <div class="col-md-3">
-                            <label value="fecha">Seleccione la fecha</label>
-                            <input type="date" value="date" />
 
-                            <label value="fecha">Seleccione la operacion</label>
+                            <h4>Comparación de operaciones</h4>
+                            {{ form_widget(form) }}
 
-                        </div>
+                            <br>
+                            <button class="fa fa-filter" value="Buscar" onclick="Ejecutar">Buscar</button>
+
                     </div>
                 </div>
             {% endblock %}

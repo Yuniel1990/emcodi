@@ -79,6 +79,20 @@ class Operacion
      */
     private $tipoOperacion;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="costoMN", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $costoMN;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="costoCUC", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $costoCUC;
+
     public function SacarVentaNeta($descuento)
     {
         $flag = $this->importeCUC + $this->importeMN;
@@ -102,7 +116,7 @@ class Operacion
     /**
      * Set fecha
      *
-     * @param \DateTime $fecha
+     * @param \Date $fecha
      * @return Operacion
      */
     public function setFecha($fecha)
@@ -115,7 +129,7 @@ class Operacion
     /**
      * Get fecha
      *
-     * @return \DateTime 
+     * @return \Date
      */
     public function getFecha()
     {
@@ -281,5 +295,51 @@ class Operacion
     public function getTipoOperacion()
     {
         return $this->tipoOperacion;
+    }
+
+    /**
+     * Set costoMN
+     *
+     * @param string $costoMN
+     * @return Operacion
+     */
+    public function setCostoMN($costoMN)
+    {
+        $this->costoMN = $costoMN;
+
+        return $this;
+    }
+
+    /**
+     * Get costoMN
+     *
+     * @return string 
+     */
+    public function getCostoMN()
+    {
+        return $this->costoMN;
+    }
+
+    /**
+     * Set costoCUC
+     *
+     * @param string $costoCUC
+     * @return Operacion
+     */
+    public function setCostoCUC($costoCUC)
+    {
+        $this->costoCUC = $costoCUC;
+
+        return $this;
+    }
+
+    /**
+     * Get costoCUC
+     *
+     * @return string 
+     */
+    public function getCostoCUC()
+    {
+        return $this->costoCUC;
     }
 }

@@ -40,14 +40,22 @@ class OperacionController extends Controller
      * @Route("/informe", name="operacion_informe")
      * @Method("GET")
      */
-    public function informeAction()
+    public function informeAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm('comercial\ComercialBundle\Form\RangoFechaType');
+        $form->handleRequest($request);
 
-        $operacions = $em->getRepository('ComercialBundle:Operacion')->findAll();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
+
+        $operacion = $em->getRepository('ComercialBundle:Operacion')->findAll();
+
 
         return $this->render('ComercialBundle:operacion:informe.html.twig', array(
-            'operacions' => $operacions,
+            'operacion' => $operacion,
+            'form' => $form->createView(),
         ));
     }
 
@@ -68,8 +76,6 @@ class OperacionController extends Controller
             $tipoOp = $operacion->getTipoOperacion();
             $totalR = $operacion->SacarVentaNeta($tipoOp->getDescuento());
             $operacion->setTotal($totalR);
-
-//            $ventassumadas = $em->getRepository('ComercialBundle:Operacion')->BuscarVentaDiarias($operacion->getFecha());
 
             $em->persist($operacion);
             $em->flush();

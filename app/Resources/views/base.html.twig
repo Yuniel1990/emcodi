@@ -10,12 +10,11 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="UTF-8"/>
-    <title>Metronic | Dashboard</title>
+    <title>EMCODI | {% block title %}WELCOME!{% endblock %}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <title>{% block title %}WELCOME!{% endblock %}</title>
 
     {% block stylesheets %}
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -49,7 +48,7 @@
         <div class="container-fluid">
             <div class="havbar-header">
                 <!-- BEGIN LOGO -->
-                <a id="index" class="navbar-brand" href="start.html">
+                <a id="index" class="navbar-brand" href="{{ path('homepage') }}">
                     <img src="{{ asset('bundles/app/img/logo.png') }}" alt="Logo"> </a>
                 <!-- END LOGO -->
                 <!-- BEGIN TOPBAR ACTIONS -->

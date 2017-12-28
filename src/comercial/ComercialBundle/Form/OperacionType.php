@@ -24,8 +24,10 @@ class OperacionType extends AbstractType
                 'attr' => array('class' => 'form-control input-medium')))
             ->add('noFactura', TextType::class,array('required' =>true,'label' => 'Numero de la Factura:','attr' => array('placeholder'=>"Numero de la Factura",'class' => 'form-control  input-medium')))
             ->add('ordenDespacho', TextType::class,array('required' =>true,'label' => 'Orden de Venta:','attr' => array('placeholder'=>"Orden de Venta",'class' => 'form-control form-control-inline input-medium')))
-            ->add('importeCUC',TextType::class,array('required' =>true,'label' => 'Importe en CUC:','attr' => array('placeholder'=>"Importe en CUC",'class' => 'form-control form-control-inline input-medium')))
+            ->add('costoMN',TextType::class,array('required' =>true,'label' => 'Costo en MN:','attr' => array('placeholder'=>"Costo en MN",'class' => 'form-control form-control-inline input-medium')))
+            ->add('costoCUC',TextType::class,array('required' =>true,'label' => 'Costo en CUC:','attr' => array('placeholder'=>"Costo en CUC",'class' => 'form-control form-control-inline input-medium')))
             ->add('importeMN',TextType::class,array('required' =>true,'label' => 'Importe en MN:','attr' => array('placeholder'=>"Importe en MN",'class' => 'form-control form-control-inline input-medium')))
+            ->add('importeCUC',TextType::class,array('required' =>true,'label' => 'Importe en CUC:','attr' => array('placeholder'=>"Importe en CUC",'class' => 'form-control form-control-inline input-medium')))
             ->add('tipoOperacion', EntityType::class, array('required'=>true, 'label'=>'Tipo de operacion:', 'class'=>'comercial\ComercialBundle\Entity\TipoOperacion',
                 'choice_label'=>'descripcion' ,'placeholder'=>"Seleccionar", 'attr' => array('class' => 'form-control input-medium')))
         ;

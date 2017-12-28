@@ -12,11 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class OperacionRepository extends EntityRepository
 {
-    public function BuscarVentaDiarias(\DateTime $date = null)
+    public function findVentaDiarias(\DateTime $date = null)
     {
-        if($date == null)$date = new \DateTime('now');
-        $query = $this->_em->createQuery('SELECT SUM(op.total) as ventaNeta FROM ComercialBundle:Operacion op WHERE op.fecha = :Fecha')
-            ->setParameter('Fecha',$date->format('y-m-d'));
-        return $query->getArrayResult();
+        
+    }
+
+    public function findCostoDiario(\DateTime $date = null)
+    {
+        if ($date == null)$date = new \DateTime('now');
+        $query = $this->_em->createQuery('SELECT SUM(c.total-(c.costoMN+c.costoCUC)) as utilBruta FROM ComercialBundle:Operacion c WHERE c.fecha = :Fecha')
+            ->setParameter('Fecha', $date->format('y-m-d'));
+
+        return $query->getResult();
     }
 }
